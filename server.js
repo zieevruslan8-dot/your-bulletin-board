@@ -7,7 +7,7 @@ app.use(cors());
 app.use(express.json());
 
 // 🔹 Подключение к MongoDB Atlas
-const MONGO_URI = "mongodb+srv://admin:12345test@cluster0.j4jt6mg.mongodb.net/?appName=Cluster0";
+const MONGO_URI = "mongodb+srv://scarlet:EtDGQBChuyOI5IWx@cluster0.j4jt6mg.mongodb.net/?appName=Cluster0";
 
 mongoose.connect(MONGO_URI, {
   useNewUrlParser: true,
