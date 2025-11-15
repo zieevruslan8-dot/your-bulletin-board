@@ -1,21 +1,39 @@
-const express = require('express');
+import express from 'express';
+import Ad from '../models/Ad.js';
+
 const router = express.Router();
-const Ad = require('../models/Ad');
 
+// GET /api/ads - получить все объявления
 router.get('/', async (req, res) => {
-  const ads = await Ad.find().populate('owner', 'name email');
-  res.json(ads);
-});
-
-router.post('/', async (req, res) => {
-  const { title, description, price, imageUrl, owner } = req.body;
   try {
-    const ad = new Ad({ title, description, price, imageUrl, owner });
-    await ad.save();
-    res.json(ad);
+    const ads = await Ad.find().sort({ createdAt: -1 });
+    res.json(ads);
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
 });
 
-module.exports = router;
+// POST /api/ads - создать новое объявление
+router.post('/', async (req, res) => {
+  try {
+    const { title, description, price, imageUrl } = req.body;
+    
+    if (!title) {
+      return res.status(400).json({ message: "Заголовок обязателен" });
+    }
+
+    const ad = new Ad({ 
+      title, 
+      description: description || "", 
+      price: price || null, 
+      imageUrl: imageUrl || "" 
+    });
+    
+    await ad.save();
+    res.status(201).json(ad);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
+export default router;
