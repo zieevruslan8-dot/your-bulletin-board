@@ -1,6 +1,7 @@
 import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
+import adsRouter from './routes/ads.js';
 
 const app = express();
 app.use(cors());
@@ -15,6 +16,9 @@ mongoose.connect(MONGO_URI, {
 })
 .then(() => console.log("✅ MongoDB connected"))
 .catch((err) => console.error("❌ MongoDB connection error:", err));
+
+// 🔹 Подключение роутов
+app.use('/api/ads', adsRouter);
 
 app.get("/", (req, res) => {
   res.send("Server is running and connected to MongoDB!");
