@@ -1,13 +1,11 @@
-import mongoose from 'mongoose';
+const mongoose = require('mongoose');
 
 const adSchema = new mongoose.Schema({
-  title: { type: String, required: true },
+  title: String,
   description: String,
   price: Number,
   imageUrl: String,
-  contacts: { type: String, required: true } // ← ДОБАВЛЕНО
-}, { 
-  timestamps: true 
-});
+  owner: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+}, { timestamps: true });
 
-export default mongoose.model('Ad', adSchema);
+module.exports = mongoose.model('Ad', adSchema);
