@@ -1,8 +1,5 @@
 {
   "type": "module",
-  // остальное без изменений
-}
-{
   "name": "services-ads",
   "version": "1.0.0",
   "main": "server.js",
