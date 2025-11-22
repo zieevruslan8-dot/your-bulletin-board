@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const adSchema = new mongoose.Schema({
     title: String,
@@ -9,4 +9,4 @@ const adSchema = new mongoose.Schema({
     owner: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
 }, { timestamps: true });
 
-module.exports = mongoose.model('Ad', adSchema);
+export default mongoose.model('Ad', adSchema);
