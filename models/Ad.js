@@ -5,6 +5,8 @@ const adSchema = new mongoose.Schema({
     description: String,
     price: Number,
     imageUrl: String,
+    contacts: { type: String, required: true },
     owner: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
-}, { timestamps: true });  
+}, { timestamps: true });
+
 module.exports = mongoose.model('Ad', adSchema);
