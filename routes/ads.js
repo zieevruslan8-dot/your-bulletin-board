@@ -32,12 +32,12 @@ router.delete('/:id', async (req, res) => {
         if (!ad) {
             return res.status(404).json({ message: 'Объявление не найдено' });
         }
-        
+
         const authorId = req.headers['author-id'];
         if (ad.authorId !== authorId) {
             return res.status(403).json({ message: 'Недостаточно прав' });
         }
-        
+
         await Ad.findByIdAndDelete(req.params.id);
         res.json({ message: 'Объявление удалено' });
     } catch (err) {
