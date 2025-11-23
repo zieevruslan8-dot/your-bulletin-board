@@ -6,7 +6,7 @@ const adSchema = new mongoose.Schema({
     price: Number,
     imageUrl: String,
     contacts: { type: String, required: true },
-    owner: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+    authorId: { type: String, required: true },
 }, { timestamps: true });
 
 export default mongoose.model('Ad', adSchema);
